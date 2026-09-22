@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LiVuar — банкетний зал для весіль та сімейних свят у Чернівцях</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --ink:#12151b;
+    --ink-2:#1b212a;
+    --ink-3:#232a34;
+    --ivory:#f6f1e6;
+    --ivory-2:#efe7d6;
+    --gold:#b9954f;
+    --gold-light:#e3c68a;
+    --wine:#5c1a26;
+    --text-light:#efe8d8;
+    --text-light-muted:#a9a293;
+    --text-dark:#221e19;
+    --text-dark-muted:#6c6355;
+    --serif:'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --sans:'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *,*::before,*::after{box-sizing:inherit}
+  html{scroll-behavior:smooth; scroll-padding-top:env(safe-area-inset-top,0px);}
+  body{
+    margin:0;
+    background:var(--ivory);
+    color:var(--text-dark);
+    font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img,svg{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+  section{position:relative}
+
+
+  h1,h2,h3{font-family:var(--serif);font-weight:500;margin:0;letter-spacing:.2px}
+  h2{font-size:clamp(2.1rem,4vw,3rem);line-height:1.08}
+  h3{font-size:1.5rem;line-height:1.2}
+  p{margin:0;line-height:1.65}
+  .lead{font-size:1.08rem;color:var(--text-dark-muted);max-width:52ch}
+
+
+  header{
+    position:sticky;
+    top:env(safe-area-inset-top,0px);
+    z-index:50;
+    background:rgba(18,21,27,.86);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(185,149,79,.22);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 28px;max-width:1120px;margin:0 auto}
+  .brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-size:1.5rem;color:var(--text-light);letter-spacing:.5px}
+  .brand .mark{width:30px;height:30px;flex:0 0 auto}
+  .nav-links{display:flex;gap:34px;align-items:center}
+  .nav-links a{font-size:.92rem;color:var(--text-light-muted);transition:color .2s}
+  .nav-links a:hover{color:var(--gold-light)}
+  .nav-cta{
+    font-size:.9rem;color:var(--ink);background:linear-gradient(135deg,var(--gold-light),var(--gold));
+    padding:11px 22px;border-radius:2px;font-weight:600;letter-spacing:.2px;transition:filter .2s,transform .2s;
+  }
+  .nav-cta:hover{filter:brightness(1.08);transform:translateY(-1px)}
+  .burger{display:none;background:none;border:0;width:34px;height:34px;cursor:pointer;padding:0}
+  .burger span{display:block;width:24px;height:1px;background:var(--gold-light);margin:6px auto;transition:.25s}
+  .mobile-panel{display:none;flex-direction:column;gap:0;background:var(--ink);border-top:1px solid rgba(185,149,79,.2)}
+  .mobile-panel a{padding:16px 28px;border-bottom:1px solid rgba(255,255,255,.06);color:var(--text-light-muted);font-size:.95rem}
+  .mobile-panel a.nav-cta{color:var(--ink);margin:16px 28px 20px;text-align:center;border-bottom:none}
+
+  @media (max-width:860px){
+    .nav-links{display:none}
+    .burger{display:block}
+    body.menu-open .mobile-panel{display:flex}
+  }
+
+
+  .hero{
+    background:
+      radial-gradient(ellipse 60% 45% at 18% 8%, rgba(185,149,79,.18), transparent 60%),
+      radial-gradient(ellipse 55% 40% at 88% 82%, rgba(92,26,38,.35), transparent 60%),
+      radial-gradient(ellipse 40% 40% at 78% 15%, rgba(227,198,138,.12), transparent 65%),
+      var(--ink);
+    color:var(--text-light);
+    padding:120px 0 100px;
+    overflow:hidden;
+  }
+  .hero-grain{
+    position:absolute;inset:0;pointer-events:none;opacity:.05;
+    background-image:radial-gradient(rgba(255,255,255,.9) 1px, transparent 1px);
+    background-size:3px 3px;
+  }
+  .hero-inner{position:relative;text-align:center;display:flex;flex-direction:column;align-items:center;gap:26px}
+  .hero-mark{width:54px;height:54px;color:var(--gold-light);opacity:.85}
+  .hero h1{
+    font-size:clamp(3.4rem,9vw,6.4rem);
+    font-weight:500;
+    color:var(--ivory);
+    line-height:.95;
+    letter-spacing:1px;
+  }
+  .hero .tagline{
+    font-family:var(--serif);font-style:italic;font-size:clamp(1.3rem,2.4vw,1.7rem);
+    color:var(--gold-light);max-width:34ch;
+  }
+  .hero .lead{color:var(--text-light-muted);max-width:48ch;text-align:center;font-size:1.05rem}
+  .hero-ctas{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:8px}
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;padding:15px 30px;font-size:.95rem;font-weight:600;
+    border-radius:2px;cursor:pointer;border:1px solid transparent;transition:filter .2s,transform .2s,background .2s;
+    font-family:var(--sans);
+  }
+  .btn-gold{background:linear-gradient(135deg,var(--gold-light),var(--gold));color:var(--ink)}
+  .btn-gold:hover{filter:brightness(1.07);transform:translateY(-1px)}
+  .btn-ghost{border-color:rgba(239,232,216,.35);color:var(--text-light)}
+  .btn-ghost:hover{border-color:var(--gold-light);color:var(--gold-light)}
+  .hero-proof{
+    margin-top:22px;display:flex;align-items:center;gap:10px;color:var(--text-light-muted);font-size:.88rem;
+  }
+  .stars{color:var(--gold-light);letter-spacing:2px;font-size:.95rem}
+
+
+  .about{padding:110px 0;background:var(--ivory)}
+  .about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:center}
+  .about-copy .eyebrow{font-family:var(--serif);font-style:italic;color:var(--wine);font-size:1.15rem;margin-bottom:14px;display:block}
+  .about-copy h2{margin-bottom:22px}
+  .about-copy p+p{margin-top:16px}
+  .about-copy .lead{margin-top:18px}
+  .facts{margin-top:34px;display:flex;flex-direction:column;gap:16px}
+  .fact{display:flex;gap:14px;align-items:flex-start}
+  .fact svg{width:20px;height:20px;flex:0 0 auto;margin-top:3px;color:var(--wine)}
+  .fact span{font-size:.98rem;color:var(--text-dark-muted)}
+  .ornament-panel{
+    background:var(--ink);border:1px solid rgba(185,149,79,.3);padding:56px 40px;
+    display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px;
+  }
+  .ornament-panel svg{width:70px;height:70px;color:var(--gold-light)}
+  .ornament-panel .quote{font-family:var(--serif);font-style:italic;color:var(--ivory-2);font-size:1.35rem;line-height:1.4}
+  .ornament-panel .quote-by{color:var(--gold-light);font-size:.85rem;letter-spacing:.4px}
+
+  @media (max-width:860px){
+    .about-grid{grid-template-columns:1fr;gap:44px}
+  }
+
+
+  .formats{padding:100px 0;background:var(--ink);color:var(--text-light)}
+  .formats-head{text-align:center;max-width:60ch;margin:0 auto 60px}
+  .formats-head .eyebrow{font-family:var(--serif);font-style:italic;color:var(--gold-light);font-size:1.15rem;display:block;margin-bottom:14px}
+  .formats-head h2{color:var(--ivory)}
+  .formats-head .lead{color:var(--text-light-muted);margin:18px auto 0}
+  .format-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(185,149,79,.22)}
+  .format-card{background:var(--ink);padding:44px 30px;display:flex;flex-direction:column;gap:18px;transition:background .25s}
+  .format-card:hover{background:var(--ink-2)}
+  .format-card svg{width:34px;height:34px;color:var(--gold-light)}
+  .format-card h3{color:var(--ivory);font-size:1.35rem}
+  .format-card p{color:var(--text-light-muted);font-size:.92rem}
+
+  @media (max-width:860px){
+    .format-grid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:560px){
+    .format-grid{grid-template-columns:1fr}
+  }
+
+
+  .perks{padding:110px 0;background:var(--ivory)}
+  .perks-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:start}
+  .perks-head .eyebrow{font-family:var(--serif);font-style:italic;color:var(--wine);font-size:1.15rem;display:block;margin-bottom:14px}
+  .perks-head h2{margin-bottom:18px}
+  .perk-list{display:flex;flex-direction:column}
+  .perk{display:flex;gap:22px;padding:26px 0;border-top:1px solid rgba(34,30,25,.12)}
+  .perk:last-child{border-bottom:1px solid rgba(34,30,25,.12)}
+  .perk svg{width:26px;height:26px;flex:0 0 auto;color:var(--wine);margin-top:2px}
+  .perk h3{font-size:1.2rem;margin-bottom:6px}
+  .perk p{color:var(--text-dark-muted);font-size:.95rem}
+
+  @media (max-width:860px){
+    .perks-grid{grid-template-columns:1fr;gap:34px}
+  }
+
+
+  .rating{padding:90px 0;background:var(--wine);color:var(--ivory);text-align:center}
+  .rating-score{font-family:var(--serif);font-size:clamp(3.5rem,9vw,5.5rem);line-height:1;color:var(--gold-light)}
+  .rating .stars{font-size:1.3rem;margin:14px 0}
+  .rating p{color:rgba(246,241,230,.75);max-width:46ch;margin:10px auto 0}
+
+
+  .booking{padding:110px 0 130px;background:var(--ink);color:var(--text-light)}
+  .booking-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px}
+  .booking-info .eyebrow{font-family:var(--serif);font-style:italic;color:var(--gold-light);font-size:1.15rem;display:block;margin-bottom:14px}
+  .booking-info h2{color:var(--ivory);margin-bottom:20px}
+  .booking-info .lead{color:var(--text-light-muted)}
+  .contact-list{margin-top:36px;display:flex;flex-direction:column;gap:22px}
+  .contact-item{display:flex;gap:16px;align-items:flex-start}
+  .contact-item svg{width:22px;height:22px;flex:0 0 auto;color:var(--gold-light);margin-top:2px}
+  .contact-item a,.contact-item span{font-size:.98rem;color:var(--ivory-2)}
+  .contact-item small{display:block;color:var(--text-light-muted);font-size:.8rem;margin-top:2px}
+  .contact-item a{transition:color .2s}
+  .contact-item a:hover{color:var(--gold-light)}
+
+  .form-panel{background:var(--ink-2);border:1px solid rgba(185,149,79,.25);padding:42px}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+  .field{display:flex;flex-direction:column;gap:7px}
+  .field.full{grid-column:1/-1}
+  label{font-size:.82rem;color:var(--text-light-muted)}
+  input,select,textarea{
+    background:var(--ink);border:1px solid rgba(239,232,216,.18);color:var(--text-light);
+    padding:12px 14px;font-size:.95rem;font-family:var(--sans);border-radius:1px;
+  }
+  input:focus,select:focus,textarea:focus{outline:2px solid var(--gold-light);outline-offset:1px;border-color:transparent}
+  textarea{resize:vertical;min-height:80px}
+  .form-panel .btn-gold{width:100%;justify-content:center;margin-top:6px;border:none;font-size:1rem}
+  .form-note{margin-top:14px;font-size:.82rem;color:var(--text-light-muted);text-align:center;min-height:1.2em}
+
+  @media (max-width:860px){
+    .booking-grid{grid-template-columns:1fr;gap:44px}
+    .form-row{grid-template-columns:1fr}
+  }
+
+
+  footer{background:var(--ink);border-top:1px solid rgba(185,149,79,.18);padding:34px 0;padding-bottom:calc(34px + env(safe-area-inset-bottom,0px))}
+  .footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+  .footer-inner span{color:var(--text-light-muted);font-size:.82rem}
+  .footer-inner a{color:var(--text-light-muted);font-size:.82rem}
+  .footer-inner a:hover{color:var(--gold-light)}
+
+  :focus-visible{outline:2px solid var(--gold-light);outline-offset:2px}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+
+<header>
+  <nav class="nav">
+    <a href="#top" class="brand">
+      <svg class="mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="18.5" stroke="#e3c68a" stroke-width="1"/>
+        <path d="M13 27V13h3.2l3.8 9.6L23.8 13H27v14h-2.6V17l-3.6 10h-1.6L15.6 17v10H13z" fill="#e3c68a"/>
+      </svg>
+      LiVuar
+    </a>
+    <div class="nav-links">
+      <a href="#about">Про нас</a>
+      <a href="#formats">Формати свят</a>
+      <a href="#perks">Переваги</a>
+      <a href="#contacts">Контакти</a>
+      <a href="#contacts" class="nav-cta">Забронювати дату</a>
+    </div>
+    <button class="burger" id="burgerBtn" aria-label="Меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-panel" id="mobilePanel">
+    <a href="#about">Про нас</a>
+    <a href="#formats">Формати свят</a>
+    <a href="#perks">Переваги</a>
+    <a href="#contacts">Контакти</a>
+    <a href="#contacts" class="nav-cta">Забронювати дату</a>
+  </div>
+</header>
+
+
+<section class="hero" id="top">
+  <div class="hero-grain"></div>
+  <div class="wrap hero-inner">
+    <svg class="hero-mark" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M50 8C38 22 30 34 30 46c0 12 9 20 20 20s20-8 20-20c0-12-8-24-20-38z" stroke="currentColor" stroke-width="1"/>
+      <path d="M50 66v26M38 92h24" stroke="currentColor" stroke-width="1"/>
+      <path d="M20 46c4 8 10 12 18 13M80 46c-4 8-10 12-18 13" stroke="currentColor" stroke-width="1"/>
+    </svg>
+    <h1>LiVuar</h1>
+    <p class="tagline">простір для головних подій вашої родини</p>
+    <p class="lead">Ексклюзивний банкетний зал у Чернівцях, де ми приймаємо лише одне свято за раз — весілля, банкет, хрестини чи день народження — і присвячуємо його вам повністю.</p>
+    <div class="hero-ctas">
+      <a href="#contacts" class="btn btn-gold">Забронювати дату</a>
+      <a href="tel:0503380558" class="btn btn-ghost">Подзвонити: 050 338 05 58</a>
+    </div>
+    <div class="hero-proof">
+      <span class="stars">★★★★☆</span>
+      <span>4,3 середня оцінка гостей · 100 відгуків у Google</span>
+    </div>
+  </div>
+</section>
+
+
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-copy">
+      <span class="eyebrow">Наша філософія</span>
+      <h2>Один зал. Одне свято. Ваш день — без компромісів</h2>
+      <p class="lead">LiVuar — це не ресторан із залою на вечір, а простір, який на час вашого свята повністю належить лише вам і вашим гостям. Без сусідніх бенкетів, без чужого шуму — тільки атмосфера, яку ви створюєте разом із нашою командою.</p>
+      <div class="facts">
+        <div class="fact">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 2 3 7v10l9 5 9-5V7l-9-5Z" stroke="currentColor" stroke-width="1.3"/></svg>
+          <span>Ексклюзивна оренда всього закладу на час святкування</span>
+        </div>
+        <div class="fact">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M4 6h16M4 18h10" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+          <span>Індивідуальний сценарій свята та персональний менеджер</span>
+        </div>
+        <div class="fact">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.6-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.4-9.5 9-9.5 9Z" stroke="currentColor" stroke-width="1.3"/></svg>
+          <span>вулиця Героїв Майдану, 184, Чернівці — зручний під'їзд і паркування</span>
+        </div>
+      </div>
+    </div>
+    <div class="ornament-panel">
+      <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M40 6C25 20 16 32 16 44c0 13 11 24 24 24s24-11 24-24c0-12-9-24-24-38z" stroke="currentColor" stroke-width="1"/>
+        <circle cx="40" cy="46" r="6" stroke="currentColor" stroke-width="1"/>
+      </svg>
+      <p class="quote">«Свято починається не з дати у календарі, а з місця, де вам хочеться зібрати найдорожчих людей»</p>
+      <span class="quote-by">— команда LiVuar</span>
+    </div>
+  </div>
+</section>
+
+
+<section class="formats" id="formats">
+  <div class="wrap">
+    <div class="formats-head">
+      <span class="eyebrow">Для кожної важливої дати</span>
+      <h2>Формати свят, які ми приймаємо</h2>
+      <p class="lead">Від найважливішого дня двох людей до сімейного застілля на кілька поколінь — простір LiVuar адаптується під масштаб і настрій вашої події.</p>
+    </div>
+  </div>
+  <div class="format-grid">
+    <div class="format-card">
+      <svg viewBox="0 0 24 24" fill="none"><circle cx="8" cy="15" r="4" stroke="currentColor" stroke-width="1.3"/><circle cx="16" cy="15" r="4" stroke="currentColor" stroke-width="1.3"/></svg>
+      <h3>Весілля</h3>
+      <p>Церемонія, банкет і вечірка в одному просторі — весь зал у розпорядженні наречених та їхніх гостей.</p>
+    </div>
+    <div class="format-card">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M7 3v6a5 5 0 0 0 10 0V3M12 14v7M8 21h8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+      <h3>Банкети та ювілеї</h3>
+      <p>Урочисті прийоми, корпоративні святкування та ювілеї з продуманим меню й сервісом.</p>
+    </div>
+    <div class="format-card">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M12 3c-2 3-3 5-3 7a3 3 0 0 0 6 0c0-2-1-4-3-7Z" stroke="currentColor" stroke-width="1.3"/><path d="M6 21c1-5 4-8 6-8s5 3 6 8" stroke="currentColor" stroke-width="1.3"/></svg>
+      <h3>Хрестини</h3>
+      <p>Тепла родинна подія — затишна атмосфера для наймолодшого гостя і всіх поколінь родини.</p>
+    </div>
+    <div class="format-card">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 21V11l8-6 8 6v10" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M9 21v-6h6v6" stroke="currentColor" stroke-width="1.3"/></svg>
+      <h3>Дні народження</h3>
+      <p>Від камерного сімейного вечора до масштабного святкування з програмою для гостей.</p>
+    </div>
+  </div>
+</section>
+
+
+<section class="perks" id="perks">
+  <div class="wrap perks-grid">
+    <div class="perks-head">
+      <span class="eyebrow">Чому обирають LiVuar</span>
+      <h2>Все, що потрібно для вашого свята — в одному місці</h2>
+      <p class="lead">Ми беремо на себе організаційні деталі, щоб ви могли просто бути з гостями.</p>
+    </div>
+    <div class="perk-list">
+      <div class="perk">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2 3 7v10l9 5 9-5V7l-9-5Z" stroke="currentColor" stroke-width="1.3"/></svg>
+        <div>
+          <h3>Весь зал — лише для вас</h3>
+          <p>У день вашого свята заклад працює виключно на вашу подію, без сторонніх гостей.</p>
+        </div>
+      </div>
+      <div class="perk">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 19h16M6 19V9l6-5 6 5v10" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+        <div>
+          <h3>Індивідуальне меню</h3>
+          <p>Формуємо святкове меню разом із вами — з урахуванням побажань і кількості гостей.</p>
+        </div>
+      </div>
+      <div class="perk">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div>
+          <h3>Персональний супровід</h3>
+          <p>Менеджер свята допомагає з деталями від першого дзвінка до останнього тосту.</p>
+        </div>
+      </div>
+      <div class="perk">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="7" cy="17" r="2" stroke="currentColor" stroke-width="1.3"/><circle cx="17" cy="17" r="2" stroke="currentColor" stroke-width="1.3"/><path d="M5 17V7h9l4 5v5" stroke="currentColor" stroke-width="1.3"/></svg>
+        <div>
+          <h3>Зручне розташування та паркування</h3>
+          <p>вул. Героїв Майдану, 184 — легко дістатися й припаркуватися гостям з усього міста.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="rating">
+  <div class="wrap">
+    <div class="rating-score">4,3</div>
+    <div class="stars">★★★★☆</div>
+    <p>Середня оцінка гостей на Google Картах за 100 відгуками. Дякуємо кожній родині, яка довірила нам своє свято.</p>
+  </div>
+</section>
+
+
+<section class="booking" id="contacts">
+  <div class="wrap booking-grid">
+    <div class="booking-info">
+      <span class="eyebrow">Забронювати дату</span>
+      <h2>Розкажіть нам про ваше свято</h2>
+      <p class="lead">Залиште заявку або напишіть напряму — ми зв'яжемось, щоб обговорити дату, формат і деталі.</p>
+      <div class="contact-list">
+        <div class="contact-item">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.6-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.4-9.5 9-9.5 9Z" stroke="currentColor" stroke-width="1.3"/></svg>
+          <div>
+            <a href="https://www.google.com/maps/search/?api=1&query=%D0%B2%D1%83%D0%BB%D0%B8%D1%86%D1%8F%20%D0%93%D0%B5%D1%80%D0%BE%D1%97%D0%B2%20%D0%9C%D0%B0%D0%B9%D0%B4%D0%B0%D0%BD%D1%83%2C%20184%2C%20%D0%A7%D0%B5%D1%80%D0%BD%D1%96%D0%B2%D1%86%D1%96" target="_blank" rel="noopener">вулиця Героїв Майдану, 184, Чернівці</a>
+            <small>Прокласти маршрут</small>
+          </div>
+        </div>
+        <div class="contact-item">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 5c0 8.5 6.5 15 15 15l3-4-6-3-2 2c-2-1-4-3-5-5l2-2-3-6-4 3Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+          <div>
+            <a href="tel:0503380558">050 338 05 58</a>
+            <small>Дзвінки приймаємо щодня</small>
+          </div>
+        </div>
+        <div class="contact-item">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4" stroke="currentColor" stroke-width="1.3"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.3"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor"/></svg>
+          <div>
+            <a href="https://instagram.com/livuar_cv" target="_blank" rel="noopener">@livuar_cv</a>
+            <small>Фото свят та актуальні деталі — в Instagram</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <form class="form-panel" id="bookingForm">
+      <div class="form-row">
+        <div class="field">
+          <label for="name">Ім'я</label>
+          <input id="name" name="name" type="text" required placeholder="Ваше ім'я">
+        </div>
+        <div class="field">
+          <label for="phone">Телефон</label>
+          <input id="phone" name="phone" type="tel" required placeholder="+38 0__ ___ __ __">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="field">
+          <label for="eventType">Формат свята</label>
+          <select id="eventType" name="eventType">
+            <option>Весілля</option>
+            <option>Банкет / ювілей</option>
+            <option>Хрестини</option>
+            <option>День народження</option>
+            <option>Інше</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="date">Бажана дата</label>
+          <input id="date" name="date" type="date">
+        </div>
+      </div>
+      <div class="field full" style="margin-bottom:16px">
+        <label for="message">Кількість гостей і побажання</label>
+        <textarea id="message" name="message" placeholder="Наприклад: близько 80 гостей, весілля у червні"></textarea>
+      </div>
+      <button type="submit" class="btn btn-gold">Надіслати заявку в Instagram</button>
+      <p class="form-note" id="formNote"></p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>© <span id="year"></span> LiVuar · банкетний зал у Чернівцях</span>
+    <a href="https://instagram.com/livuar_cv" target="_blank" rel="noopener">Instagram · @livuar_cv</a>
+    <a href="tel:0503380558">050 338 05 58</a>
+  </div>
+</footer>
+
+<script>
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+
+  const burgerBtn = document.getElementById('burgerBtn');
+  burgerBtn.addEventListener('click', () => {
+    const open = document.body.classList.toggle('menu-open');
+    burgerBtn.setAttribute('aria-expanded', String(open));
+  });
+  document.querySelectorAll('.mobile-panel a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.body.classList.remove('menu-open');
+      burgerBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+
+  const form = document.getElementById('bookingForm');
+  const note = document.getElementById('formNote');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const summary =
+      `Заявка на бронювання LiVuar\n` +
+      `Ім'я: ${data.get('name')}\n` +
+      `Телефон: ${data.get('phone')}\n` +
+      `Формат: ${data.get('eventType')}\n` +
+      `Дата: ${data.get('date') || 'уточню'}\n` +
+      `Деталі: ${data.get('message') || '—'}`;
+
+    let copied = false;
+    try {
+      await navigator.clipboard.writeText(summary);
+      copied = true;
+    } catch (err) {
+      copied = false;
+    }
+
+    window.open('https://ig.me/m/livuar_cv', '_blank', 'noopener');
+
+    note.textContent = copied
+      ? 'Дані заявки скопійовано — вставте їх у повідомлення Instagram, що відкрилося.'
+      : 'Відкрили Instagram — напишіть нам, будь ласка, деталі заявки повідомленням.';
+  });
+</script>
+
+</body>
+</html>
